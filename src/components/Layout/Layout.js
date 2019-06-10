@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { Layout as AntdLayout, Breadcrumb } from "antd";
+import { Layout as AntdLayout } from "antd";
 import { Sidebar } from "./Sidebar";
-import { Link } from "@reach/router";
 import "./Layout.module.css";
 
-const { Header, Content, Footer, Sider } = AntdLayout;
+const { Content, Footer, Sider } = AntdLayout;
 
 export const Layout = ({ children }) => {
   const [collapsed, setCollapsed] = useState(false);
@@ -15,28 +14,18 @@ export const Layout = ({ children }) => {
         collapsed={collapsed}
         onCollapse={() => setCollapsed(!collapsed)}
       >
-        <Sidebar></Sidebar>
+        <Sidebar />
       </Sider>
       <AntdLayout>
-        <Header style={{ background: "#fff", padding: 0 }} />
-        <Content style={{ margin: "0 16px" }}>
-          <Breadcrumb style={{ margin: "16px 0" }}>
-            <Breadcrumb.Item>
-              <Link to="/">Home</Link>
-            </Breadcrumb.Item>
-            <Breadcrumb.Item></Breadcrumb.Item>
-          </Breadcrumb>
-
-          {children}
-        </Content>
+        <Content style={{ margin: "0 16px" }}>{children}</Content>
         <Footer style={{ textAlign: "center" }}>
-          {" "}
           <img
             style={{
               height: "40px",
               width: "50px",
               marginRight: "20px"
             }}
+            alt="Vamp.io"
             src="https://vamp.io/img/003-Small-icons/Medium-blue/VAMP-Medium.svg"
           ></img>{" "}
           © 2018 vamp.io
