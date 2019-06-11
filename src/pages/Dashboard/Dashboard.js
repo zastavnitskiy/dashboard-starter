@@ -22,7 +22,7 @@ export const Dashboard = withLayout(() => {
         data — because of that, every time we render there is a new set of
         events.
       </p>
-      <p>Events are generated at increated page for the demo.</p>
+      <p>Events are generated at increated pace in this demo.</p>
     </>
   );
 });
