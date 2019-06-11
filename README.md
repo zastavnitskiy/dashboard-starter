@@ -3,13 +3,13 @@
 # Running locally
 
 Install dependencies:
-̀`$ yarn`
+`$ yarn`
 
 Run:
-̀`$ yarn start`
+`$ yarn start`
 
 # Running via docker
 
-̀`$ docker build . -t dashboard`
+`$ docker build . -t dashboard`
 
-̀`$ docker run -p 8080:8080 dashboard`
+`$ docker run -p 8080:8080 dashboard`
