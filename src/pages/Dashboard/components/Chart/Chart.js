@@ -1,6 +1,6 @@
-import React, { useReducer, useEffect } from "react";
+import React from "react";
 import "./Chart.module.css";
-import { Backend } from "../../../utils/backend";
+
 import { TimeSeries } from "pondjs";
 import {
   Charts,
@@ -21,33 +21,11 @@ const scatterStyle = {
   }
 };
 
-export const Chart = props => {
-  const [events, dispatch] = useReducer((state = [], action) => {
-    switch (action.type) {
-      case "add":
-        return [...state, action.event];
-      default:
-        return state;
-    }
-  });
-
-  useEffect(() => {
-    const backend = new Backend({
-      listener: event => {
-        dispatch({
-          type: "add",
-          event
-        });
-      }
-    });
-
-    return () => backend.cleanup();
-  }, []);
-
-  const eventSeries = new TimeSeries({ name: "Metric A", events });
-  if (eventSeries.size() <= 0) {
+export const Chart = ({ events }) => {
+  if (!events || !events.length) {
     return null;
   }
+  const eventSeries = new TimeSeries({ name: "Metric A", events });
 
   const charts = (
     <Charts>
@@ -75,13 +53,6 @@ export const Chart = props => {
           </ChartRow>
         </ChartContainer>
       </Resizable>
-
-      <h4>Notes:</h4>
-      <p>
-        For the simplicity of this exercise, backend doesn't persist any events
-        — because of that, every time we render there is a new set of events.
-      </p>
-      <p>To make it more fun, events are generated at increased speed.</p>
     </>
   );
 };

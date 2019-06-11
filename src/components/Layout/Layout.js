@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { Layout as AntdLayout } from "antd";
+import { Layout as AntdLayout, PageHeader } from "antd";
 import { Sidebar } from "./Sidebar";
 import "./Layout.module.css";
 
 const { Content, Footer, Sider } = AntdLayout;
 
-export const Layout = ({ children }) => {
+export const Layout = ({ children, title }) => {
   const [collapsed, setCollapsed] = useState(false);
   return (
     <AntdLayout style={{ minHeight: "100vh" }}>
@@ -17,7 +17,19 @@ export const Layout = ({ children }) => {
         <Sidebar />
       </Sider>
       <AntdLayout>
-        <Content style={{ margin: "0 16px" }}>{children}</Content>
+        <PageHeader>
+          <h1>{title}</h1>
+        </PageHeader>
+        <Content
+          style={{
+            margin: "24px 16px",
+            padding: 24,
+            background: "#fff",
+            minHeight: 280
+          }}
+        >
+          {children}
+        </Content>
         <Footer style={{ textAlign: "center" }}>
           <img
             style={{
@@ -36,9 +48,12 @@ export const Layout = ({ children }) => {
 };
 
 export const withLayout = WrappedComponent => {
-  return props => (
-    <Layout>
-      <WrappedComponent {...props} />
-    </Layout>
-  );
+  return props => {
+    const { title, ...rest } = props;
+    return (
+      <Layout title={title}>
+        <WrappedComponent {...rest} />
+      </Layout>
+    );
+  };
 };

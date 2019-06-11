@@ -32,7 +32,7 @@ export const Sidebar = () => {
               return (
                 <Menu.Item key={destination}>
                   <Link to={destination}>
-                    <Icon type={icon} /> {label}
+                    <Icon type={icon} /> <span>{label}</span>
                   </Link>
                 </Menu.Item>
               );

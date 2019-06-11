@@ -12,18 +12,18 @@ const getNewEvent = t => {
 };
 
 const tweakMe = {
-  aggregationWindow: "5min",
-  eventsRateMs: 100,
+  aggregationWindow: "60min",
+  eventsRateMs: 1000,
   startTime: new Date(),
   initialEventsCount: 500,
   incrementMs: 2 * 60 * 1000
 };
 
-export class Backend {
+export class BackendSubscription {
   constructor(params) {
     const {
       listener,
-      aggregationWindow = tweakMe.aggregationWindow,
+      aggregationWindow = params.aggregationWindow || tweakMe.aggregationWindow,
       eventsRateMs = tweakMe.eventsRateMs,
       startTime = tweakMe.startTime
     } = params;

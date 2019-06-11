@@ -5,9 +5,9 @@ import { Router } from "@reach/router";
 const App = () => {
   return (
     <Router>
-      <Home path="/"></Home>
-      <Dashboard path="/dashboard"></Dashboard>
-      <DefaultPage default />
+      <Home title="Home" path="/"></Home>
+      <Dashboard path="/dashboard" title="Dashboard"></Dashboard>
+      <DefaultPage default title="Not found" />
     </Router>
   );
 };
