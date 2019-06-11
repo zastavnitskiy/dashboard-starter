@@ -59,20 +59,29 @@ export const Chart = props => {
   const timeRange = eventSeries.range();
 
   return (
-    <Resizable>
-      <ChartContainer timeRange={timeRange}>
-        <ChartRow height="150">
-          <YAxis
-            id="y"
-            label="Value"
-            min={0}
-            max={2000}
-            width="70"
-            type="linear"
-          />
-          {charts}
-        </ChartRow>
-      </ChartContainer>
-    </Resizable>
+    <>
+      <Resizable>
+        <ChartContainer timeRange={timeRange}>
+          <ChartRow height="150">
+            <YAxis
+              id="y"
+              label="Value"
+              min={0}
+              max={2000}
+              width="70"
+              type="linear"
+            />
+            {charts}
+          </ChartRow>
+        </ChartContainer>
+      </Resizable>
+
+      <h4>Notes:</h4>
+      <p>
+        For the simplicity of this exercise, backend doesn't persist any events
+        — because of that, every time we render there is a new set of events.
+      </p>
+      <p>To make it more fun, events are generated at increased speed.</p>
+    </>
   );
 };
