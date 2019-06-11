@@ -18,8 +18,9 @@ export const Dashboard = withLayout(() => {
       <Chart events={events} />
       <h4>Notes:</h4>
       <p>
-        For the simplicity of this exercise, backend doesn't persist any events
-        — because of that, every time we render there is a new set of events.
+        For the simplicity of this exercise, backend mock doesn't persist any
+        data — because of that, every time we render there is a new set of
+        events.
       </p>
       <p>Events are generated at increated page for the demo.</p>
     </>
