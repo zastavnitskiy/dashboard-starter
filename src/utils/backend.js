@@ -50,7 +50,7 @@ export class BackendSubscription {
         listener(event);
       });
 
-    for (let i = 0; i < tweakMe.initialEventsCount; i++) {
+    for (let i = 0; i <= tweakMe.initialEventsCount; i++) {
       emitEvent();
     }
 
