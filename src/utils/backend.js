@@ -12,11 +12,11 @@ const getNewEvent = t => {
 };
 
 const tweakMe = {
-  aggregationWindow: "5s",
+  aggregationWindow: "5min",
   eventsRateMs: 100,
   startTime: new Date(),
-  initialEventsCount: 100,
-  incrementMs: 60 * 1000 * 2
+  initialEventsCount: 500,
+  incrementMs: 2 * 60 * 1000
 };
 
 export class Backend {
@@ -32,19 +32,12 @@ export class Backend {
 
     let lastTime = startTime;
 
-    const tick = () => {
+    const emitEvent = () => {
       const eventTime = new Date(lastTime.getTime() + tweakMe.incrementMs);
       const event = getNewEvent(eventTime);
       stream.addEvent(event);
       lastTime = eventTime;
     };
-
-    //something is broken here — we don't generate data for initial 100 requests
-    //for (let i = 0; i < tweakMe.initialEventsCount; i++) {
-    //  tick();
-    //}
-
-    this.interval = setInterval(tick, eventsRateMs);
 
     pipeline()
       .from(stream)
@@ -53,7 +46,15 @@ export class Backend {
       .aggregate({
         value: { value: percentile(90) }
       })
-      .to(EventOut, listener);
+      .to(EventOut, event => {
+        listener(event);
+      });
+
+    for (let i = 0; i < tweakMe.initialEventsCount; i++) {
+      emitEvent();
+    }
+
+    this.interval = setInterval(emitEvent, eventsRateMs);
   }
 
   cleanup() {

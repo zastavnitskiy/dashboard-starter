@@ -1,1 +1,0 @@
-export { getRandomData } from "./getRandomData";
