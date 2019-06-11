@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Divider, PageHeader } from "antd";
+import { Divider } from "antd";
 import { withLayout } from "../../components";
 import { Chart } from "./components/Chart";
 import { AggregationWindow } from "./components/AggregationWindow";
