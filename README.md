@@ -1,4 +1,4 @@
-# Dashboard demo
+# Dashboard demo [![Build Status](https://travis-ci.org/zastavnitskiy/state-as-querystring.svg?branch=master)](https://travis-ci.org/zastavnitskiy/dashboard-starter)
 
 # Running locally
 
